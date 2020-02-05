@@ -3,8 +3,9 @@
 
 %table#movies.table.table-striped.col-md-12
   %thead
-      %th Hello
-       %a#title_header {:href => movies_path(:inorder => 'title')} Movie Title
+    %tr
+      %th {:class => hilite('title')} 
+      %a#title_header {:href => movies_path(:inorder => 'title')} Movie Title
       %th Rating
       %th Release Date
       %th More Info
