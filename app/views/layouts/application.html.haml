@@ -8,8 +8,10 @@
     = csrf_meta_tags
 
     %body
-      %h1.title Rotten Potatoes!
-      #main
+      %div.container
+        %div.navbar.navbar-expand-lg.bg-primary.text-white
+          %h1.title Rotten Potatoes!
+        #main
           - if flash[:notice]
             %div.alert.alert-danger
               #notice.message= flash[:notice]
