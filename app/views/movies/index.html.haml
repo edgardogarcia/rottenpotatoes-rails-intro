@@ -4,10 +4,11 @@
 %table#movies.table.table-striped.col-md-12
   %thead
     %tr
-      %th{:class => "hilite"}
+      %th{:class => ("hilite" if params[:inorder] == "title")} 
         %a#title_header{:href => movies_path({:inorder => 'title'})} Movie Title
       %th Rating
-      %th Release Date
+      %th{:class => ("hilite" if params[:inorder] == "release_date")} 
+        %a#release_date_header{:href => movies_path({:inorder => 'release_date'})} Release Date
       %th More Info
   %tbody
     - @movies.each do |movie|
