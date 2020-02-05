@@ -4,13 +4,12 @@
 %table#movies.table.table-striped.col-md-12
   %thead
     %tr
-      %th {:class => "hilite"} 
-      %a#title_header {:href => movies_path(:inorder => 'title')} Movie Title
+      %th Movie Title
       %th Rating
       %th Release Date
       %th More Info
   %tbody
-    - @movies.each do |movie|`
+    - @movies.each do |movie|
       %tr
         %td= movie.title
         %td= movie.rating
