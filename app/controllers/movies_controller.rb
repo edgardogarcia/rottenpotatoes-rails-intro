@@ -20,7 +20,6 @@ class MoviesController < ApplicationController
       @movies = Movie.where(:rating => @rating_list)
     else
       @movies = Movie.all
-    end
   end
 
   def new
