@@ -18,6 +18,8 @@ class MoviesController < ApplicationController
       @movies = Movie.order(sort_type)
     elsif(!params[:ratings].nil?)
       @movies = Movie.where(rating: (params[:ratings].keys))
+    else
+      @movies = Movie.all
     end
   end
 
