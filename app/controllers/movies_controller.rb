@@ -11,12 +11,12 @@ class MoviesController < ApplicationController
   end
 
   def index
-    @all_ratings = ['G','PG','PG-13','R']
+    @all_ratings = Movie.ratings
     
     sort_type = params[:inorder]
     if(sort_type)
       @movies = Movie.order(sort_type)
-    else if(!sort_type & @rating_list != @all_ratings)
+    else if(!sort_type && (@rating_list != @all_ratings))
       @movies = Movie.where(:rating => @rating_list)
     else
       @movies = Movie.all
