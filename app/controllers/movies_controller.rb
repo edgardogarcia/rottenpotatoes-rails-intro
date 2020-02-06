@@ -16,10 +16,9 @@ class MoviesController < ApplicationController
     sort_type = params[:inorder]
     if(sort_type)
       @movies = Movie.order(sort_type)
-    else if(!sort_type && (@rating_list != @all_ratings))
-      @movies = Movie.where(:rating => @rating_list)
     else
       @movies = Movie.all
+    end
   end
 
   def new
