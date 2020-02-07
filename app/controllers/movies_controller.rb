@@ -26,19 +26,19 @@ class MoviesController < ApplicationController
     end
     
     
-    if(session[:ratings] and ratings_list)
-      if(session[:inorder])
-        @movies = Movie.where(session[:ratings].keys).order(session[:inorder])
-      else
-        @movies = Movie.where(session[:ratings].keys)
-      end
-    elsif(session[:rating] and !ratings_list and session[:inorder])
-      redirect_to movies_path(ratings: session[:ratings], inorder: session[:inorder])
-    else
-       @movies = Movie.all
-    end
+ #   if(session[:ratings] and ratings_list)
+  #    if(session[:inorder])
+   #     @movies = Movie.where(session[:ratings].keys).order(session[:inorder])
+    #  else
+     #   @movies = Movie.where(session[:ratings].keys)
+#      end
+ #   elsif(session[:rating] and !ratings_list and session[:inorder])
+ #     redirect_to movies_path(ratings: session[:ratings], inorder: session[:inorder])
+  #  else
+    #   @movies = Movie.all
+   # end
        
-    return @movies
+    return @movies.all
   end
 
   def new
