@@ -17,26 +17,24 @@ class MoviesController < ApplicationController
     ratings_list = params[:ratings]
     
     #if sort was requested, then save it in session
-    if(sort_type)
-      session[:inorder] = sort_type
-    end
+    session[:inorder] = sort_type unless !sort_type
     
     #Save boxes that are pressed in session
     session[:ratings] = rating_list unless !ratings_list
     
     
-    # if(session[:ratings] and ratings_list)
-    #   if(session[:inorder])
-    #     @movies = Movie.where(session[:ratings].keys).order(session[:inorder])
-    #   else
-    #     @movies = Movie.where(session[:ratings].keys)
-    #   end
-    # elsif(session[:rating] and !ratings_list and session[:inorder])
-    #   redirect_to movies_path(ratings: session[:ratings], inorder: session[:inorder])
-    # else
-    #   @movies = Movie.all
-    # end
-       @movies = Movie.all
+    if(session[:ratings] and ratings_list)
+      if(session[:inorder])
+        @movies = Movie.where(session[:ratings].keys).order(session[:inorder])
+      else
+        @movies = Movie.where(session[:ratings].keys)
+      end
+    elsif(session[:rating] and !ratings_list and session[:inorder])
+      redirect_to movies_path(ratings: session[:ratings], inorder: session[:inorder])
+    else
+      @movies = Movie.all
+    end
+    
   end
 
   def new
