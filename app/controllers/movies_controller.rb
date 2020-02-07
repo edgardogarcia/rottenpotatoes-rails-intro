@@ -22,9 +22,7 @@ class MoviesController < ApplicationController
     #Save boxes that are pressed in session
     session[:ratings] = rating_list unless !ratings_list
     
-    if(!session[:ratings] and !ratings_list and sort_type)
-      @movies = Movie.order(session[:inorder])
-    elsif(sort_type or ratings_list)
+    if(sort_type or ratings_list)
       if(!ratings_list)
         @movies = Movie.all.order(session[:inorder])
       else
