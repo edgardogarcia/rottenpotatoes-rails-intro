@@ -26,7 +26,7 @@ class MoviesController < ApplicationController
       @movies = Movie.order(session[:inorder])
     elsif(session[:ratings] and ratings_list)
       if(session[:inorder])
-        @movies = Movie.where(rating: session[:ratings].keys).order(session[:inorder])
+        @movies = Movie.where(rating: params[:ratings].keys).order(session[:inorder])
       else
         @movies = Movie.where(rating: session[:ratings].keys)
       end
