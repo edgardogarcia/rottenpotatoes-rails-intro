@@ -32,7 +32,7 @@ class MoviesController < ApplicationController
       else
         @movies = Movie.where(session[:ratings].keys)
       end
-    elsif(session[:rating] and !ratings_list and session[:order])
+    elsif(session[:rating] and !ratings_list and session[:inorder])
       redirect_to movies_path(ratings: session[:ratings], inorder: session[:inorder])
     else
        @movies = Movie.all
