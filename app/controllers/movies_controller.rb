@@ -37,8 +37,8 @@ class MoviesController < ApplicationController
   #  else
     #   @movies = Movie.all
    # end
-       
-    return @movies.all
+       @movies = Movie.all
+    return @movies
   end
 
   def new
