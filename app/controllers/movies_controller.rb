@@ -21,9 +21,9 @@ class MoviesController < ApplicationController
       session[:inorder] = sort_type
     end
     #Save boxes that are pressed in session
-    if(ratings_type)
-      session[:ratings] = ratings_list
-    end
+    # if(ratings_type)
+    #   session[:ratings] = ratings_list
+    # end
     
     
     # if(session[:ratings] and ratings_list)
