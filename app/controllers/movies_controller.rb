@@ -24,12 +24,10 @@ class MoviesController < ApplicationController
     
     if(!session[:ratings] and !ratings_list and sort_type)
       @movies = Movie.order(session[:inorder])
-    elsif(!params[:ratings].nil?)
-      if(session[:inorder])
-        @movies = Movie.where(rating: params[:ratings].keys).order(session[:inorder])
-      else
+    elsif(ratings_list and sort_type)
+        @movies = Movie.where(rating: session[:ratings].keys).order(session[:inorder])
+    elseif(ratings_list and !sort_type)
         @movies = Movie.where(rating: params[:ratings].keys)
-      end
     elsif((session[:ratings] and !ratings_list) or (session[:inorder] and !sort_type))
       redirect_to movies_path("ratings" => session[:ratings], "inorder" => session[:inorder])
     else
