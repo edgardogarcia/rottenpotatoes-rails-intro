@@ -13,30 +13,30 @@ class MoviesController < ApplicationController
   def index
     @all_ratings = Movie.ratings_all
     
-    sort_type = params[:inorder]
-    ratings_list = params[:ratings]
+    # sort_type = params[:inorder]
+    # ratings_list = params[:ratings]
     
-    #if sort was requested, then save it in session
-    if(sort_type)
-      session[:inorder] = sort_type
-    end
-    #Save boxes that are pressed in session
-    if(ratings_type)
-      session[:ratings] = ratings_list
-    end
+    # #if sort was requested, then save it in session
+    # if(sort_type)
+    #   session[:inorder] = sort_type
+    # end
+    # #Save boxes that are pressed in session
+    # if(ratings_type)
+    #   session[:ratings] = ratings_list
+    # end
     
     
- #   if(session[:ratings] and ratings_list)
-  #    if(session[:inorder])
-   #     @movies = Movie.where(session[:ratings].keys).order(session[:inorder])
-    #  else
-     #   @movies = Movie.where(session[:ratings].keys)
-#      end
- #   elsif(session[:rating] and !ratings_list and session[:inorder])
- #     redirect_to movies_path(ratings: session[:ratings], inorder: session[:inorder])
-  #  else
+    # if(session[:ratings] and ratings_list)
+    #   if(session[:inorder])
+    #     @movies = Movie.where(session[:ratings].keys).order(session[:inorder])
+    #   else
+    #     @movies = Movie.where(session[:ratings].keys)
+    #   end
+    # elsif(session[:rating] and !ratings_list and session[:inorder])
+    #   redirect_to movies_path(ratings: session[:ratings], inorder: session[:inorder])
+    # else
     #   @movies = Movie.all
-   # end
+    # end
        @movies = Movie.all
   end
 
