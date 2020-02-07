@@ -23,7 +23,7 @@ class MoviesController < ApplicationController
     session[:ratings] = rating_list unless !ratings_list
     
     if(sort_type or ratings_list)
-      if(!ratings_list)
+      if(!params[:ratings].nil?)
         @movies = Movie.all.order(session[:inorder])
       else
         @movies = Movie.where(rating: (params[:ratings].keys))
