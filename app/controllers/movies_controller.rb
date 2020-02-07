@@ -38,7 +38,6 @@ class MoviesController < ApplicationController
     #   @movies = Movie.all
    # end
        @movies = Movie.all
-    return @movies
   end
 
   def new
