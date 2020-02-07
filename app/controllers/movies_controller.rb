@@ -13,8 +13,8 @@ class MoviesController < ApplicationController
   def index
     @all_ratings = Movie.ratings_all
     
-    # sort_type = params[:inorder]
-    # ratings_list = params[:ratings]
+    sort_type = params[:inorder]
+    ratings_list = params[:ratings]
     
     # #if sort was requested, then save it in session
     # if(sort_type)
