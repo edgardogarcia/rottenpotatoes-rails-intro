@@ -11,7 +11,7 @@ class MoviesController < ApplicationController
   end
 
   def index
-    @all_ratings = ['G','PG','PG-13','R']
+    @all_ratings = Movie.ratings_all
     sort_type = params[:inorder]
    
     if(sort_type)
