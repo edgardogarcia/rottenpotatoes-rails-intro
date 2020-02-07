@@ -14,16 +14,15 @@ class MoviesController < ApplicationController
     @all_ratings = Movie.ratings_all
     
     sort_type = params[:inorder]
-    ratings_list = params[:rating]
+    ratings_list = params[:ratings]
     
     #if sort was requested, then save it in session
     if(sort_type)
       session[:inorder] = sort_type
     end
+    
     #Save boxes that are pressed in session
-    if(ratings_type)
-      session[:ratings] = ratings_list
-    end
+    session[:ratings] = rating_list unless !ratings_list
     
     
     # if(session[:ratings] and ratings_list)
