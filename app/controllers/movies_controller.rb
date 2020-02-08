@@ -17,10 +17,10 @@ class MoviesController < ApplicationController
     ratings_list = params[:ratings]
     
     #if sort was requested, then save it in session
-    session[:inorder] = sort_type unless !sort_type
+    session[:inorder] = params[:inorder] unless params[:inorder].nil?
     
     #Save boxes that are pressed in session
-    session[:ratings] = rating_list unless params[:ratings].nil?
+    session[:ratings] = params[:ratings] unless params[:ratings].nil?
     
     if(sort_type or ratings_list)
       if(!ratings_list)
