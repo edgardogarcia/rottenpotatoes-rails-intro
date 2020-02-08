@@ -22,27 +22,19 @@ class MoviesController < ApplicationController
     #Save boxes that are pressed in session
     session[:ratings] = params[:ratings] unless params[:ratings].nil?
     
-    
-    if(sort_type)
-      @movies = Movie.order(sort_type)
-    elsif(!params[:ratings].nil?)
-      @movies = Movie.where(rating: (params[:ratings].keys))
+    if(sort_type or ratings_list)
+      if(!ratings_list)
+        @movies = Movie.all.order(session[:inorder])
+      else
+        @movies = Movie.where(rating: (params[:ratings].keys)).order(session[:inorder])
+      end
+    elsif((session[:ratings] and !ratings_list) or (session[:inorder] and !sort_type))
+      redirect_to movies_path("ratings" => session[:ratings], "inorder" => session[:inorder])
+    elsif(session[:ratings] or session[:inorder])
+      redirect_to movies_path("ratings" => session[:ratings], "inorder" => session[:inorder])
     else
       @movies = Movie.all
     end
-    # if(sort_type or ratings_list)
-    #   if(!ratings_list)
-    #     @movies = Movie.all.order(session[:inorder])
-    #   else
-    #     @movies = Movie.where(rating: (params[:ratings].keys)).order(session[:inorder])
-    #   end
-    # elsif((session[:ratings] and !ratings_list) or (session[:inorder] and !sort_type))
-    #   redirect_to movies_path("ratings" => session[:ratings], "inorder" => session[:inorder])
-    # elsif(session[:ratings] or session[:inorder])
-    #   redirect_to movies_path("ratings" => session[:ratings], "inorder" => session[:inorder])
-    # else
-    #   @movies = Movie.all
-    # end
     
   end
 
