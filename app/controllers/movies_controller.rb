@@ -11,10 +11,7 @@ class MoviesController < ApplicationController
   end
 
   def index
-    @all_ratings = ['G','PG','PG-13','R']
-    
-    sort_type = params[:inorder]
-    ratings_list = params[:ratings]
+    @all_ratings = ratings_all
     
     #if sort was requested, then save it in session
     session[:inorder] = params[:inorder] unless params[:inorder].nil?
