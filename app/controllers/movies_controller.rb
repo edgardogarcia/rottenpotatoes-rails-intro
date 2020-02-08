@@ -20,7 +20,7 @@ class MoviesController < ApplicationController
     session[:inorder] = sort_type unless !sort_type
     
     #Save boxes that are pressed in session
-    session[:ratings] = rating_list unless !ratings_list
+    session[:ratings] = params[:ratings] unless params[:ratings].nil?
     
     
     if(sort_type)
