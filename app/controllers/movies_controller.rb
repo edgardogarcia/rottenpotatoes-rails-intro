@@ -13,11 +13,14 @@ class MoviesController < ApplicationController
   def index
     @all_ratings = ['G','PG','PG-13','R']
     
+    sort_type = params[:inorder]
+    ratings_list = params[:ratings]
+    
     #if sort was requested, then save it in session
-    session[:inorder] = params[:inorder] unless params[:inorder].nil?
+    session[:inorder] = sort_type unless !sort_type
     
     #Save boxes that are pressed in session
-    session[:ratings] = params[:ratings] unless params[:ratings].nil?
+    session[:ratings] = rating_list unless params[:ratings].nil?
     
     if(sort_type or ratings_list)
       if(!ratings_list)
