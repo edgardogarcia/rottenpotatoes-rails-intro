@@ -13,9 +13,9 @@ class MoviesController < ApplicationController
   def index
     #Getting all the movies from MODEL
     @all_ratings = Movie.ratings_all
+    
     sort_type = params[:inorder]
     ratings_list = params[:ratings]
-    
     
     #if sort was requested, then save it in session
     session[:inorder] = sort_type unless sort_type.nil?
@@ -23,12 +23,12 @@ class MoviesController < ApplicationController
     #Save boxes that are pressed in session
     session[:ratings] = ratings_list unless ratings_list.nil?
     
-    if(sort_type or ratings_list)
-      if(!ratings_list)
-        @movies = Movie.all.order(session[:inorder])
-      else
-        @movies = Movie.where(rating: (params[:ratings].keys)).order(session[:inorder])
-      end
+    if(sort_type and ratings_list)
+      @movies = Movie.where(rating: (params[:ratings].keys)).order(session[:inorder])
+    elsif(sort_type and !ratings_list)
+      @movies = Movie.all.order(session[:inorder])
+    elsif(ratings_list)
+      @movies = Movie.where(rating: (params[:ratings].keys)).order(session[:inorder])
     elsif((session[:ratings] and !ratings_list) or (session[:inorder] and !sort_type))
       redirect_to movies_path("ratings" => session[:ratings], "inorder" => session[:inorder])
     elsif(session[:ratings] or session[:inorder])
@@ -36,7 +36,6 @@ class MoviesController < ApplicationController
     else
       @movies = Movie.all
     end
-    
   end
 
   def new
